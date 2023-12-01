@@ -1,0 +1,17 @@
+# zGodX server overview for Sentora Hosting Control Panel
+# Author		   : JK https://jkmods.github.io/
+# Maintained By    : TGates for Sentora
+# Contact Email    : tgates@mach-hosting.com
+
+Plans to-do:
+-Fix Webalizer stats
+
+v1.1.4 - 11-30-2023
+-Added changelog.txt
+-Fixed Non-numeric variable notice (/main/cpuram.php)
+-Removed CGI check/display (No longer used in Sentora) (/main/packages.php)
+-Updated frontend view (/main/packages.php)
+-Disabled Webalizer Stats (Not working) (/code/controller.ext.php)
+-Added /deploy/remove.run to remove database entries if module is removed
+-Added /deploy/upgrade.run for upgrading the module
+-Added copyright and donation information (/code/controller.ext.php; module.zpm)

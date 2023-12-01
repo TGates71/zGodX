@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+    <name>zGodX</name>
+    <version>114</version>
+    <defaultcat>Administrator</defaultcat>
+    <desc>This module gives the admin complete control over what is happening on their server</desc>
+    <type>user</type>
+    <authorname>JK</authorname>
+    <authoremail>Contact TGates on Sentora forums</authoremail>
+    <authorurl>https://jkmods.github.io/</authorurl>
+    <updateurl>https://zppy-repo.mach-hosting.com/repo/zgodx.xml</updateurl>
+</module>

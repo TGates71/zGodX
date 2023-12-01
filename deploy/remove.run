@@ -1,0 +1,31 @@
+<?php
+/**
+	* Removal Script for zGodX module 
+	* Version : 1.1.4
+	* Author : JK https://jkmods.github.io/
+	* Maintainer : TGates
+	* For Sentora v2.0.0 http://www.sentora.org
+	* License http://www.gnu.org/licenses/gpl-3.0.html GPLv3
+ */
+
+require_once('cnf/db.php');
+require_once('dryden/db/driver.class.php');
+require_once('dryden/debug/logger.class.php');
+require_once('dryden/runtime/dataobject.class.php');
+require_once('dryden/sys/versions.class.php');
+require_once('dryden/ctrl/options.class.php');
+require_once('dryden/ctrl/auth.class.php');
+require_once('dryden/ctrl/users.class.php');
+require_once('dryden/fs/director.class.php');
+require_once('inc/dbc.inc.php');
+
+function removeModule(){
+    global $zdbh;
+        
+    #delete table
+    $stmt = $zdbh->prepare("DROP TABLE IF EXISTS `x_zgodx_reportings`");
+    $stmt->execute();
+}
+
+removeModule();
+?>
