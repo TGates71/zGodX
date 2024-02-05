@@ -112,7 +112,9 @@ class module_controller
 		<!-- TG - Stats not working
 		&raquo; <a href="javascript:void(0)" onClick="document.frmMenu.getMain.value=\'webalizer_stats\'; document.frmMenu.submit();">Webalizer Stats</a><br />
 		-->
+		<!-- TG - Logs not working if using file instead of DB
 		&raquo; <a href="javascript:void(0)" onClick="document.frmMenu.getMain.value=\'zpanel_logs\'; document.frmMenu.submit();">Sentora Logs</a><br />
+		-->
 		&raquo; <a href="javascript:void(0)" onClick="document.frmMenu.getMain.value=\'deleted_records\'; document.frmMenu.submit();">Deleted Records</a><br /></td>
 		</tr>
 		';
@@ -133,7 +135,7 @@ class module_controller
 	
     static function getCopyright()
 	{
-        $copyright = '<font face="ariel" size="2">' . ui_module::GetModuleName() . ' v1.1.4 &copy; 2013-' . date("Y") . ' maintained by <a target="_blank" href="http://forums.sentora.org/member.php?action=profile&uid=2">TGates</a> for <a target="_blank" href="http://sentora.org">Sentora Control Panel</a> &#8212; Help support future development of this module and donate today!</font>';
+        $copyright = '<font face="ariel" size="2">' . ui_module::GetModuleName() . ' v1.1.6 &copy; 2013-' . date("Y") . ' maintained by <a target="_blank" href="http://forums.sentora.org/member.php?action=profile&uid=2">TGates</a> for <a target="_blank" href="http://sentora.org">Sentora Control Panel</a> &#8212; Help support future development of this module and donate today!</font>';
         return $copyright;
     }
 }

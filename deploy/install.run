@@ -1,9 +1,8 @@
 <?php
 /**
-	* Upgrade Script for zGodX module 
+	* Install Script for zGodx module
 	* Version : 1.1.6
-	* Author : JK https://jkmods.github.io/
-	* Maintainer : TGates
+	* Author : TGates
 	* For Sentora v2.0.0 http://www.sentora.org
 	* License http://www.gnu.org/licenses/gpl-3.0.html GPLv3
  */
@@ -20,12 +19,9 @@ require_once('dryden/fs/director.class.php');
 require_once('dryden/fs/filehandler.class.php');
 require_once('inc/dbc.inc.php');
 
-function upgradeModule($newversion, $module)
+function installModule()
 {
-    global $zdbh;
-	
-    $sql = $zdbh->prepare("UPDATE x_modules SET mo_version_in = $newversion WHERE mo_folder_vc = '$module';");
-    $sql->execute();    
+	global $zdbh, $controller;
 	
 	# path to add to open_basedir
 	$addPath = ":/proc/";
@@ -34,24 +30,16 @@ function upgradeModule($newversion, $module)
 	$getOBD = $zdbh->prepare("SELECT so_value_tx FROM x_settings WHERE so_name_vc = 'openbase_temp'");
 	$getOBD->execute();
 	$openbase_temp = $getOBD->fetchColumn();
-
-	# check if OBD entry exists and add it if it not
-	if (strpos($openbase_temp, $addPath) !== false)
-	{
-		# do nothing
-	}
-	else
-	{
-		# add OBD entry
-		$updateOBD = $openbase_temp . $addPath;
-		
-		# update openbase_temp DB value
-		$update = $zdbh->prepare("UPDATE x_settings SET so_value_tx = :updateOBD WHERE so_name_vc = 'openbase_temp'");			 
-		$update->bindParam(':updateOBD', $updateOBD);
-		$update->execute();
-	}
+	
+	# add zGodx OBD entry to openbase_temp DB values
+	$updateOBD = $openbase_temp . $addPath;
+	
+	# update openbase_temp DB values
+	$update = $zdbh->prepare("UPDATE x_settings SET so_value_tx = :updateOBD WHERE so_name_vc = 'openbase_temp'");			 
+	$update->bindParam(':updateOBD', $updateOBD);
+	$update->execute();
 }
 
-upgradeModule('116', 'zgodx');
+installModule()
 
 ?>

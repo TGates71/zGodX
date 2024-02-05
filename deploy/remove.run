@@ -1,7 +1,7 @@
 <?php
 /**
 	* Removal Script for zGodX module 
-	* Version : 1.1.4
+	* Version : 1.1.6
 	* Author : JK https://jkmods.github.io/
 	* Maintainer : TGates
 	* For Sentora v2.0.0 http://www.sentora.org
@@ -25,6 +25,23 @@ function removeModule(){
     #delete table
     $stmt = $zdbh->prepare("DROP TABLE IF EXISTS `x_zgodx_reportings`");
     $stmt->execute();
+
+	# path to remove from openbase_temp
+	$removePath = ":/proc/";
+
+	# get openbase_temp DB values
+	$getOBD = $zdbh->prepare("SELECT so_value_tx FROM x_settings WHERE so_name_vc = 'openbase_temp'");
+	$getOBD->execute();
+	$openbase_temp = $getOBD->fetchColumn();
+	
+	# remove SenAds OBD entry from openbase_temp DB values
+	$updateOBD = str_replace($removePath, '', $openbase_temp);
+	$updateOBD = trim($updateOBD);
+	
+	# update openbase_temp DB values
+	$update = $zdbh->prepare("UPDATE x_settings SET so_value_tx = :updateOBD WHERE so_name_vc = 'openbase_temp'");			 
+	$update->bindParam(':updateOBD', $updateOBD);
+	$update->execute();
 }
 
 removeModule();

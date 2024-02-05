@@ -5,6 +5,13 @@
 
 Plans to-do:
 -Fix Webalizer stats
+-Fix Log viewer? Shows daemon-run log and not error log (Convert to error log or just remove?)
+
+v1.1.6 - 2024-02-04
+-Add /proc/ folder to openbase_dir temp DB setting
+
+v1.1.5 - 12-05-2023
+-Disabled Log Viewer - Only works if using DB; throws errors if using file
 
 v1.1.4 - 11-30-2023
 -Added changelog.txt

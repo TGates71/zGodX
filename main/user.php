@@ -60,7 +60,7 @@ $end.='<em>zGodX &raquo; <b>Information for user: '.$rowac['ac_user_vc'].'</b></
 				$row   = $list->fetch();
 				$total =$zdbh->query($sql)->rowCount();
 
-      $date = $row['lg_when_ts'];
+      $date = $row['lg_when_ts'] ?? '';
       
     if ($total <> 0){
       
@@ -610,24 +610,30 @@ $end.='
      } while($row = $list->fetch());
 		$end.='</table>';
 		
- }else{ 
+	}else{ 
  $end.= "No mail aliases at this time<br />";
  } 
 	$end.='<br />';
 	
-#get distribution lists
-$end.='<b>Distribution Lists</b><br>';
-$sql   = "SELECT * FROM x_distlists WHERE dl_acc_fk ='".$userid."' AND dl_deleted_ts IS NULL";
-			$list  = $zdbh->query($sql);
-			$list->setFetchMode(PDO::FETCH_ASSOC);
-			$row   = $list->fetch();
-$total =$zdbh->query($sql)->rowCount();
-
+	#get distribution lists
+	$end.='<b>Distribution Lists</b><br>';
+	$sql   = "SELECT * FROM x_distlists WHERE dl_acc_fk ='".$userid."' AND dl_deleted_ts IS NULL";
+				$list  = $zdbh->query($sql);
+				$list->setFetchMode(PDO::FETCH_ASSOC);
+				$row   = $list->fetch();
+	$total =$zdbh->query($sql)->rowCount();
+	# tg - fix for empty distribution lists
+	if (isset($row['dl_acc_fk']))
+	{
 	$sqlacc = "SELECT ac_user_vc, ac_id_pk FROM x_accounts WHERE ac_id_pk ='" .$row['dl_acc_fk']."'";
 			$listacc  = $zdbh->query($sqlacc);
 			$listacc->setFetchMode(PDO::FETCH_ASSOC);
 			$rowacc   = $listacc->fetch();
-
+	}
+	else
+	{
+		$rowacc = NULL;
+	}
 if ($total > 0){
 
 $end.='

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <updateserver>
-	<latestversion>114</latestversion>
+	<latestversion>116</latestversion>
 	<downloadurl>https://zppy-repo.mach-hosting.com/repo/zgodx.zpp</downloadurl>
 	<desc>This module gives the admin complete control over what is happening on their server.</desc>
-	<updatedesc>Updated for Sentora v2.0.1 (View: module/zgodx/changelog.txt for complete list)</updatedesc>
+	<updatedesc>Fix for openbase_dir error</updatedesc>
 	<authorname>JK</authorname>
 	<authoremail>Contact TGates on Sentora Forums</authoremail>
 	<authorurl>http://www.sentora.org</authorurl>
